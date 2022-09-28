@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-function AddTransactionForm() {
+function AddTransactionForm(props) {
   const [transaction, setTransactions] = useState([]);
   // gets input from the fields and store them in setTransactions
 
@@ -13,11 +13,14 @@ function AddTransactionForm() {
   }
   ///on submitt button when clicked
   const addTransaction = (event) => {
-    fetch(" http://localhost:8001/transactions", {
-      method: "post",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(transaction),
-    });
+    event.target.value;
+    console.log(transaction);
+    props.onSubmitTransaction(transaction);
+    // fetch(" http://localhost:8001/transactions", {
+    //   method: "post",
+    //   headers: { "Content-Type": "application/json" },
+    //   body: JSON.stringify(transaction),
+    // });
   };
   return (
     <div className="ui segment">

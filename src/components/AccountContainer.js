@@ -2,14 +2,14 @@ import React from "react";
 import TransactionsList from "./TransactionsList";
 import Search from "./Search";
 import AddTransactionForm from "./AddTransactionForm";
-import axios from "axios";
+
 ////
 import { useState, useEffect } from "react";
 
 function AccountContainer() {
   const [transactions, setTransactions] = useState([]);
 
-  ////handle Delete
+  ////handle Delete ////////
   const handleDelete = (deletedTransaction) => {
     setTransactions(
       transactions.filter(
@@ -30,11 +30,17 @@ function AccountContainer() {
   useEffect(() => {
     getTransaction();
   }, []);
-
+  function onSubmitTransaction() {
+    fetch(" http://localhost:8001/transactions", {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(transactions),
+    });
+  }
   return (
     <div>
       <Search />
-      <AddTransactionForm />
+      <AddTransactionForm transactions={onSubmitTransaction} />
       <TransactionsList transactions={transactions} onDelete={handleDelete} />
     </div>
   );
