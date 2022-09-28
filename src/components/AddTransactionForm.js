@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import axios from "axios";
 
 function AddTransactionForm(props) {
   const [transaction, setTransactions] = useState([]);
@@ -12,15 +11,13 @@ function AddTransactionForm(props) {
     });
   }
   ///on submitt button when clicked
-  const addTransaction = (event) => {
-    event.target.value;
-    console.log(transaction);
-    props.onSubmitTransaction(transaction);
-    // fetch(" http://localhost:8001/transactions", {
-    //   method: "post",
-    //   headers: { "Content-Type": "application/json" },
-    //   body: JSON.stringify(transaction),
-    // });
+  const addTransaction = () => {
+    // props.onSubmitTransaction(transaction);
+    fetch(" http://localhost:8001/transactions", {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(transaction),
+    });
   };
   return (
     <div className="ui segment">

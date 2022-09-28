@@ -4,7 +4,7 @@ function Transaction({ transaction }, onDelete) {
   const { id, date, description, category, amount } = transaction;
   function handleDelete() {
     console.log("i have been clicked");
-    // onDelete(id);
+    onDelete(id);
   }
   return (
     <tr key={id}>

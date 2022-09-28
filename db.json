@@ -90,6 +90,26 @@
       "category": "Bills",
       "amount": "10000",
       "id": 13
+    },
+    {
+      "date": "2022-09-16",
+      "description": "hjhjh",
+      "category": "m j",
+      "id": 14
+    },
+    {
+      "date": "2022-09-15",
+      "description": "dsds",
+      "category": "sdsds",
+      "amount": "43434",
+      "id": 15
+    },
+    {
+      "date": "2022-09-13",
+      "description": "Fees",
+      "category": "Food",
+      "amount": "4242",
+      "id": 16
     }
   ]
 }

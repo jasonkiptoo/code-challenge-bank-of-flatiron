@@ -8,6 +8,7 @@ import { useState, useEffect } from "react";
 
 function AccountContainer() {
   const [transactions, setTransactions] = useState([]);
+  const [searchResults, setSearchResults] = useState([]);
 
   ////handle Delete ////////
   const handleDelete = (deletedTransaction) => {
@@ -30,18 +31,40 @@ function AccountContainer() {
   useEffect(() => {
     getTransaction();
   }, []);
-  function onSubmitTransaction() {
-    fetch(" http://localhost:8001/transactions", {
-      method: "post",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(transactions),
-    });
+  /////handling searchh
+
+  // function onSubmitTransaction() {
+  //   fetch(" http://localhost:8001/transactions", {
+  //     method: "post",
+  //     headers: { "Content-Type": "application/json" },
+  //     body: JSON.stringify(transactions),
+  //   });
+  // }
+
+  // const filteredTransactions = transactions.filter((transaction) =>
+  //   searchResults === ""
+  //     ? true
+  //     (transactions.filter((transaction) => : transaction.description.includes(searchResults))
+  // );
+  const filteredTransactions = transactions.filter((transaction) => {
+    if (searchResults === "") {
+      transaction.description.includes(searchResults);
+    } else {
+      return true;
+    }
+  });
+
+  function handleSearch(search) {
+    setSearchResults(search);
   }
   return (
     <div>
-      <Search />
-      <AddTransactionForm transactions={onSubmitTransaction} />
-      <TransactionsList transactions={transactions} onDelete={handleDelete} />
+      <Search onChangeSearch={handleSearch} />
+      <AddTransactionForm />
+      <TransactionsList
+        transactions={filteredTransactions}
+        onDelete={handleDelete}
+      />
     </div>
   );
 }
