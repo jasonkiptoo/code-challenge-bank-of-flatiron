@@ -1,6 +1,6 @@
 import React from "react";
 
-function Transaction({ transaction }, onDelete) {
+function Transaction({ transaction, onDelete }) {
   const { id, date, description, category, amount } = transaction;
   function handleDelete() {
     console.log("i have been clicked");

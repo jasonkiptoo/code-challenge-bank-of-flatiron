@@ -12,9 +12,7 @@ function AccountContainer() {
 
   ////handle Delete ////////
   const handleDelete = (deletedTransaction) => {
-    setTransactions(
-      transactions.filter(
-        (transaction) => transaction.id !== deletedTransaction
+    setTransactions(transactions.filter((transaction) => transaction.id !== deletedTransaction
       )
     );
   };
@@ -33,38 +31,49 @@ function AccountContainer() {
   }, []);
   /////handling searchh
 
-  // function onSubmitTransaction() {
-  //   fetch(" http://localhost:8001/transactions", {
-  //     method: "post",
-  //     headers: { "Content-Type": "application/json" },
-  //     body: JSON.stringify(transactions),
-  //   });
-  // }
-
+  // const filteredTransactions = transactions.filter((transaction) => {
+  //   if (searchResults === null) {
+  //     transaction.category.includes(searchResults);
+  //   } else {
+  //     return true;
+  //   }
+  // });
   // const filteredTransactions = transactions.filter((transaction) =>
-  //   searchResults === ""
-  //     ? true
-  //     (transactions.filter((transaction) => : transaction.description.includes(searchResults))
+  //   transaction.description.toLowerCase().includes(e.target.value.toLowerCase())
   // );
-  const filteredTransactions = transactions.filter((transaction) => {
-    if (searchResults === "") {
-      transaction.description.includes(searchResults);
-    } else {
-      return true;
-    }
-  });
+  // setTransactions(filteredTransactions);
 
-  function handleSearch(search) {
-    setSearchResults(search);
+  function searchTransaction(e) {
+    setTransactions(
+      transactions.filter((transaction) =>
+        transaction.description
+          .toLowerCase()
+          .includes(e.target.value.toLowerCase())
+      )
+    );
   }
+
+  // function searchTransaction(e) {
+  //   if (searchResults === "") {
+  //     return true;
+  //   } else {
+  //     setTransactions(
+  //       transactions.filter((transaction) =>
+  //         transaction.description
+  //           .toLowerCase()
+  //           .includes(e.target.value.toLowerCase())
+  //       )
+  //     );
+  //   }
+  // }
+  // function handleSearch(search) {
+  //   setSearchResults(search);
+  // }
   return (
     <div>
-      <Search onChangeSearch={handleSearch} />
+      <Search searchTransaction={searchTransaction} />
       <AddTransactionForm />
-      <TransactionsList
-        transactions={filteredTransactions}
-        onDelete={handleDelete}
-      />
+      <TransactionsList transactions={transactions} onDelete={handleDelete} />
     </div>
   );
 }
