@@ -1,12 +1,24 @@
 import React from "react";
 
-function Transaction() {
+function Transaction({ transaction }, onDelete) {
+  const { id, date, description, category, amount } = transaction;
+  function handleDelete() {
+    console.log("i have been clicked");
+    // onDelete(id);
+  }
   return (
-    <tr>
-      <td>{"your code here..."}</td>
-      <td>{"your code here..."}</td>
-      <td>{"your code here..."}</td>
-      <td>{"your code here..."}</td>
+    <tr key={id}>
+      <td>{id}</td>
+      <td>{date}</td>
+      <td>{description}</td>
+      <td>{category}</td>
+      <td>{amount}</td>
+      <td>
+        <button className="btn btn-success">Edit</button>{" "}
+        <button className="btn btn-danger" onClick={handleDelete}>
+          Delete
+        </button>
+      </td>
     </tr>
   );
 }
