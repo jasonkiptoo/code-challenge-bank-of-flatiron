@@ -2,6 +2,7 @@ import React from "react";
 import TransactionsList from "./TransactionsList";
 import Search from "./Search";
 import AddTransactionForm from "./AddTransactionForm";
+import axios from "axios";
 
 ////
 import { useState, useEffect } from "react";
@@ -11,10 +12,17 @@ function AccountContainer() {
   const [searchResults, setSearchResults] = useState([]);
 
   ////handle Delete ////////
-  const handleDelete = (deletedTransaction) => {
-    setTransactions(transactions.filter((transaction) => transaction.id !== deletedTransaction
+  const handleDelete = async (deletedTransaction) => {
+    window.alert("FILE HAS BEEN DELETED");
+    setTransactions(
+      transactions.filter(
+        (transaction) => transaction.id !== deletedTransaction
       )
     );
+  };
+
+  const onEdit = async (deletedTransaction) => {
+    window.alert("Not yet implemented");
   };
   const getTransaction = () => {
     fetch("http://localhost:8001/transactions")
@@ -30,19 +38,6 @@ function AccountContainer() {
     getTransaction();
   }, []);
   /////handling searchh
-
-  // const filteredTransactions = transactions.filter((transaction) => {
-  //   if (searchResults === null) {
-  //     transaction.category.includes(searchResults);
-  //   } else {
-  //     return true;
-  //   }
-  // });
-  // const filteredTransactions = transactions.filter((transaction) =>
-  //   transaction.description.toLowerCase().includes(e.target.value.toLowerCase())
-  // );
-  // setTransactions(filteredTransactions);
-
   function searchTransaction(e) {
     setTransactions(
       transactions.filter((transaction) =>
@@ -73,7 +68,11 @@ function AccountContainer() {
     <div>
       <Search searchTransaction={searchTransaction} />
       <AddTransactionForm />
-      <TransactionsList transactions={transactions} onDelete={handleDelete} />
+      <TransactionsList
+        transactions={transactions}
+        onDelete={handleDelete}
+        onEdit={onEdit}
+      />
     </div>
   );
 }

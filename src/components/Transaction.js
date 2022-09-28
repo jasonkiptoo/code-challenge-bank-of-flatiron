@@ -1,10 +1,13 @@
 import React from "react";
 
-function Transaction({ transaction, onDelete }) {
+function Transaction({ transaction, onDelete, onEdit }) {
   const { id, date, description, category, amount } = transaction;
   function handleDelete() {
     console.log("i have been clicked");
     onDelete(id);
+  }
+  function handleEdit() {
+    onEdit(id);
   }
   return (
     <tr key={id}>
@@ -14,7 +17,9 @@ function Transaction({ transaction, onDelete }) {
       <td>{category}</td>
       <td>{amount}</td>
       <td>
-        <button className="btn btn-success">Edit</button>{" "}
+        <button className="btn btn-success" onClick={handleEdit}>
+          Edit
+        </button>{" "}
         <button className="btn btn-danger" onClick={handleDelete}>
           Delete
         </button>
