@@ -20,7 +20,13 @@ function Transaction({ transaction, onDelete, onEdit }) {
         <button className="btn btn-success" onClick={handleEdit}>
           Edit
         </button>{" "}
-        <button className="btn btn-danger" onClick={handleDelete}>
+        <button
+          className="btn btn-danger"
+          onClick={() => {
+            if (window.confirm("Are you sure you wish to delete this item?"))
+              handleDelete();
+          }}
+        >
           Delete
         </button>
       </td>

@@ -11,12 +11,16 @@ function AccountContainer() {
 
   ////handle Delete ////////
   const handleDelete = async (deletedTransaction) => {
-    window.alert("FILE HAS BEEN DELETED");
-    setTransactions(
-      transactions.filter(
-        (transaction) => transaction.id !== deletedTransaction
-      )
-    );
+       fetch(`http://localhost:8001/transactions/${deletedTransaction}`, {
+      method: "DELETE",
+    })
+      .then((r) => r.json())
+      .then(() => {
+        const updatedTransaction = transactions.filter((q) => {
+          return q.id !== deletedTransaction;
+        });
+        setTransactions(updatedTransaction);
+      });
   };
 
   const onEdit = async (deletedTransaction) => {
