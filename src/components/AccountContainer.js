@@ -2,14 +2,12 @@ import React from "react";
 import TransactionsList from "./TransactionsList";
 import Search from "./Search";
 import AddTransactionForm from "./AddTransactionForm";
-import axios from "axios";
 
 ////
 import { useState, useEffect } from "react";
 
 function AccountContainer() {
   const [transactions, setTransactions] = useState([]);
-  const [searchResults, setSearchResults] = useState([]);
 
   ////handle Delete ////////
   const handleDelete = async (deletedTransaction) => {
@@ -47,23 +45,6 @@ function AccountContainer() {
       )
     );
   }
-
-  // function searchTransaction(e) {
-  //   if (searchResults === "") {
-  //     return true;
-  //   } else {
-  //     setTransactions(
-  //       transactions.filter((transaction) =>
-  //         transaction.description
-  //           .toLowerCase()
-  //           .includes(e.target.value.toLowerCase())
-  //       )
-  //     );
-  //   }
-  // }
-  // function handleSearch(search) {
-  //   setSearchResults(search);
-  // }
   return (
     <div>
       <Search searchTransaction={searchTransaction} />
